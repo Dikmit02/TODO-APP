@@ -18,3 +18,6 @@ Route::get('/', function () {
 });
 
 Route::get('todos','App\Http\Controllers\TodosController@index');
+
+//dynamic Routing
+Route::get('todos/{todo}','App\Http\Controllers\TodosController@show');

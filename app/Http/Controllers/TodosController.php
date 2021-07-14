@@ -20,5 +20,18 @@ class TodosController extends Controller
         // return view ('todos.index').with('todos',$todos);
         return view ('todos.index')->with('todos',Todo::all());
     }
+
+    public function show($todoId){
+        // Laravel's dd() function can be defined as a helper function, 
+        // which is used to dump a variable's contents
+        //  to the browser and prevent the further script execution
+        // dd($todoId);
+
+        $todo=Todo::find($todoId);
+        
+
+        return view ('todos.show')->with('todo',$todo);
+
+    }
 }
 
