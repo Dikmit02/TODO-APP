@@ -46,7 +46,7 @@ class TodosController extends Controller
             'name' => 'required|min:6|max:12',
             'description' => 'required'
           ]);
-          
+
         // dd(request()->all());
         $data = request()->all();
 
@@ -58,5 +58,31 @@ class TodosController extends Controller
         $todo->save();
   
         return redirect('/todos');
+    }
+
+    public function edit($todoId)
+    {
+      $todo = Todo::find($todoId);
+
+      return view('todos.edit')->with('todo', $todo);
+    }
+
+    public function update($todoId)
+    {
+      $this->validate(request(), [
+        'name' => 'required|min:6|max:12',
+        'description' => 'required'
+      ]);
+
+      $data = request()->all();
+
+      $todo = Todo::find($todoId);
+
+      $todo->name = $data['name'];
+      $todo->description = $data['description'];
+
+      $todo->save();
+
+      return redirect('/todos');
     }
 }
