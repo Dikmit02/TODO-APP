@@ -42,6 +42,11 @@ class TodosController extends Controller
 
     public function store()
     {
+        $this->validate(request(), [
+            'name' => 'required|min:6|max:12',
+            'description' => 'required'
+          ]);
+          
         // dd(request()->all());
         $data = request()->all();
 
